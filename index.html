@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="./assets/fontawesome/css/all.min.css">
+  <link rel="stylesheet" href="./assets/css/style.css">
+  <title>HBP's Books</title>
+</head>
+<body>
+  
+  <header class="header">
+    <h1 class="header-title">HBP's Books</h1>
+  </header>
+
+  <form action="#" class="search-form">
+    <input type="text" name="keyword" id="keyword" placeholder="Cari Buku Berdasarkan Judul..." class="form-control keyword">
+  </form>
+
+  <div class="container">
+    <form action="#" class="form">
+      <h2>Input Buku Baru</h2>
+
+      <div class="form-group">
+        <label for="title">Judul</label>
+        <input type="text" name="title" id="title" placeholder="Masukkan Judul Buku" class="form-control title">
+      </div>
+
+      <div class="form-group">
+        <label for="author">Penulis</label>
+        <input type="text" name="author" id="author" placeholder="Masukkan Penulis Buku" class="form-control author">
+      </div>
+
+      <div class="form-group">
+        <label for="year">Tahun</label>
+        <input type="text" name="yeah" id="yeah" placeholder="Masukkan Tahun Terbit" class="form-control year">
+      </div>
+
+      <div class="form-group">
+        Selesai Dibaca ? <input type="checkbox" name="isCompleted" id="isCompleted">
+      </div>
+    </form>
+
+    <section class="books">
+      <h2>Data Buku</h2>
+
+      <div class="books-list-wrapper">
+        <div class="books-tab">
+          <button class="tab-links">Belum Selesai Dibaca</button>
+          <button class="tab-links">Selesai Dibaca</button>
+        </div>
+
+        <div class="books-tab-content completed">
+          <table>
+            <thead>
+              <tr>
+                <th>No</th>
+                <th>Judul</th>
+                <th>Penulis</th>
+                <th>Tahun</th>
+                <th>Actions</th>
+              </tr>
+            </thead>
+
+            <tbody class="books-item"></tbody>
+          </table>
+        </div>
+
+        <div class="books-tab-content uncompleted">
+          <table>
+            <thead>
+              <tr>
+                <th>No</th>
+                <th>Judul</th>
+                <th>Penulis</th>
+                <th>Tahun</th>
+                <th>Actions</th>
+              </tr>
+            </thead>
+
+            <tbody class="books-item"></tbody>
+          </table>
+        </div>
+      </div>
+    </section>
+  </div>
+
+  <script src="./assets/js/script.js"></script>
+</body>
+</html>
