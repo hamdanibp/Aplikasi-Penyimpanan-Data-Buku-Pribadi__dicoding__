@@ -22,10 +22,14 @@
 
   document.addEventListener("DOMContentLoaded", () => {
     const form = document.querySelector(".form-input");
-  
+    const bookId = document.querySelector(".idBook");
+
     form.addEventListener("submit", e => {
       e.preventDefault();
-      addBook();
+      
+      (bookId.value.length === 0) ? addBook() : editBook(bookId.value);
+
+      bookId.value = "";
     });
 
     bookActionButtons();
@@ -66,12 +70,13 @@
         <td>${author}</td>
         <td>${year}</td>
         <td>
-        ${
-          (!isCompleted) ? 
-            `<button class="check-book" data-bookid="${id}"><i class="fas fa-check"></i></button>` 
-          : 
-            `<button class="undo-book" data-bookid="${id}"><i class="fas fa-undo"></i></button>`
-        }
+          ${
+            (!isCompleted) ? 
+              `<button class="check-book" data-bookid="${id}"><i class="fas fa-check"></i></button>` 
+            : 
+              `<button class="undo-book" data-bookid="${id}"><i class="fas fa-undo"></i></button>`
+          }
+          <button class="edit-book" data-bookid="${id}"><i class="fas fa-edit"></i></button>
           <button class="remove-book" data-bookid="${id}"><i class="fas fa-trash"></i></button>
         </td>
       </tr>
@@ -86,7 +91,6 @@
         const tRows = document.querySelectorAll(".all-results-table tbody tr");
         const value = e.target.value.toLowerCase();
 
-        console.log(tRows);
         tRows.forEach(row => {
           if(row.querySelector(".title").textContent.toLowerCase().startsWith(value)) {
             row.style.display = "table-row";
@@ -98,8 +102,35 @@
     });
   }
 
+  function editBook(id) {
+    const title = document.querySelector(".title");
+    const author = document.querySelector(".author");
+    const year = document.querySelector(".year");
+    const isCompleted = document.querySelector(".isCompleted");
+    
+    const item = books.find(book => book.id == id);
+
+    item.title = title.value;
+    item.author = author.value;
+    item.year = year.value;
+    item.isCompleted = isCompleted.checked;
+
+    title.value = "";
+    author.value = "";
+    year.value = "";
+    isCompleted.checked = false;
+
+    document.dispatchEvent(new Event(RENDER_BOOK));
+  }
+
   function bookActionButtons() {
     const booksItem = document.querySelectorAll(".books-item");
+
+    const idBook = document.querySelector(".idBook");
+    const title = document.querySelector(".title");
+    const author = document.querySelector(".author");
+    const year = document.querySelector(".year");
+    const isCompleted = document.querySelector(".isCompleted");
 
     booksItem.forEach(buttonAction => {
       buttonAction.addEventListener("click", e => {
@@ -123,14 +154,24 @@
 
           books.splice(bookTarget, 1);
         }
+
+        if(e.target.classList.contains("edit-book")) {
+          const bookId = e.target.dataset.bookid;
+          const bookTarget = books.find(book => book.id == bookId);
+
+          idBook.value = bookTarget.id;
+          title.value = bookTarget.title;
+          author.value = bookTarget.author;
+          year.value = bookTarget.year;
+          isCompleted.checked = bookTarget.isCompleted;
+        }
+
         document.dispatchEvent(new Event(RENDER_BOOK));
       });
     });
   };
 
   document.addEventListener(RENDER_BOOK, () => {    
-    console.log(books);
-
     const uncompletedBooks = document.querySelector(".books-item.uncompletedBook");
     const completedBooks = document.querySelector(".books-item.completedBook");
     const allBooks = document.querySelector(".books-item.allBook");

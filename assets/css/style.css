@@ -236,6 +236,10 @@ button > i {
   color: #8d0392;
 }
 
+.books-tab-content table tr td button.edit-book {
+  color: #d38a04;
+}
+
 .books-tab-content table tr td button.remove-book {
   color: #d84141;
 }
