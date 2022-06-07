@@ -1,0 +1,245 @@
+@font-face {
+  font-family: 'Gentium Book Basic';
+  src: url('../fonts/gentium-book-basic/GentiumBookBasic.woff') format('woff');
+  font-weight: normal;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Gentium Book Basic';
+  src: url('../fonts/gentium-book-basic/GentiumBookBasic-Bold.woff') format('woff');
+  font-weight: bold;
+  font-style: normal;
+  font-display: swap;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html, input, button {
+  font: 16px "Gentium Book Basic";
+}
+
+body {
+  color: #343434;
+}
+
+a {
+  text-decoration: none;
+  color: #343434;
+}
+
+a:visited {
+  color: inherit;
+}
+
+ul li {
+  list-style: none;
+}
+
+button {
+  border: 0;
+  padding: 7px 19px;
+  cursor: pointer;
+}
+
+button > i {
+  pointer-events: none;
+} 
+
+/* header */
+.header {
+  min-height: 70px;
+  display: flex;
+  align-items: center;
+  background: #84eefc;
+  padding-left: 20px;
+}
+
+.header h1 {
+  font-size: 2.5rem;
+}
+
+/* container */
+.container {
+  padding: 50px;
+  display: flex;
+  justify-content: space-between;
+}
+
+/* input form */
+.form-input {
+  width: 100%;
+  max-width: 500px;
+}
+
+.form-input h2 {
+  font-size: 2rem;
+  margin-bottom: 20px;
+  color: #008ea1;
+}
+
+.form-input .form-group {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  margin-bottom: 8px;
+}
+
+.form-input .form-group label {
+  font-size: 1.2rem;
+  font-weight: bold;
+  letter-spacing: .5px;
+  margin-bottom: 5px;
+  color: #008ea1;
+}
+
+.form-input .form-group .form-control {
+  width: 80%;
+  padding: 4px 2px;
+  border: 1.5px solid #343434;
+  outline: none;
+}
+
+.form-input .form-group .form-control:focus {
+  border-color: #008ea1;
+}
+
+.form-input .form-group.checkbox {
+  flex-direction: row;
+  align-items: center;
+}
+
+.form-input .form-group.checkbox label {
+  margin-bottom: 0;
+}
+
+.form-input .form-group .isCompleted {
+  margin-left: 10px;
+  cursor: pointer;
+}
+
+.form-input .button-submit {
+  margin-top: 12px;
+  background: #008ea1;
+  border: 1px solid #008ea1;
+  color: #fff;
+  font-weight: bold;
+  letter-spacing: .5px;
+  transition: .3s;
+}
+
+.form-input .button-submit:hover {
+  color: #008ea1;
+  background: #fff;
+}
+
+/* books wrapper */
+.books-wrapper {
+  width: 100%;
+  max-width: 1100px;
+  background: #fff;
+}
+
+.books-wrapper h2 {
+  font-size: 2rem;
+  margin-bottom: 20px;
+  color: #008ea1;
+}
+
+.books-list .tab-button-wrapper {
+  overflow: hidden;
+  border: 1px solid #008ea1;
+  background: #84eefc;
+}
+
+.books-list .tab-button-wrapper a {
+  float: left;
+  transition: .3s;
+  padding: 7px 19px;
+  background: inherit;
+}
+
+.books-list .tab-button-wrapper a:hover {
+  background: #008ea1;
+}
+
+.books-list .tab-button-wrapper a.active {
+  background: #008ea1;
+}
+
+.books-list .books-tab-content {
+  display: none;
+}
+
+.books-list #uncompleted:target, 
+.books-list #completed:target,
+.books-list #allBook:target {
+  display: block;
+}
+
+.books-list .books-tab-content input.keyword {
+  width: 100%;
+  padding: 4px 2px;
+  outline: none;
+  margin-top: 5px;
+  border: 0;
+  border-bottom: 2px solid #343434;
+  color: #008ea1;
+}
+
+.books-list .books-tab-content input.keyword:focus::placeholder {
+  color: inherit;
+}
+
+.books-list .books-tab-content input.keyword:focus  {
+  border-color: #008ea1;
+}
+
+/* books-tab-content [TABLE] */
+.books-tab-content table {
+  border-collapse: collapse;
+  width: 100%;
+  margin-top: 5px;
+  border: 1px solid #008ea1;
+}
+
+.books-tab-content table th {
+  padding: 10px 0;
+  text-align: left;
+  background-color: #84eefc;
+}
+
+.books-tab-content table tr:nth-child(even) {
+  background: #84eefc41;
+}
+
+.books-tab-content table tr td {
+  padding: 10px 0;
+}
+
+.books-tab-content table tr td button {
+  padding: 2px 10px;
+  background: transparent;
+  transition: .3s;
+}
+
+.books-tab-content table tr td button.check-book {
+  color: #4be93c;
+}
+
+.books-tab-content table tr td button.undo-book {
+  color: #8d0392;
+}
+
+.books-tab-content table tr td button.remove-book {
+  color: #d84141;
+}
+
+.books-tab-content table tr td button:hover {
+  opacity: .5;
+}
