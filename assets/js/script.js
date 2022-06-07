@@ -61,7 +61,9 @@
     const getDataBooks = localStorage.getItem(STORAGE_KEY);
     const items = JSON.parse(getDataBooks);
 
-    items.map(item => books.push(item));
+    if(items !== null) {
+      items.map(item => books.push(item));
+    }
 
     document.dispatchEvent(new Event(RENDER_BOOK));
   }
