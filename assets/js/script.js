@@ -20,6 +20,8 @@
   const books = [];
   const RENDER_BOOK = "render-book";
 
+  const STORAGE_KEY = "BOOK_STORAGE";
+
   document.addEventListener("DOMContentLoaded", () => {
     const form = document.querySelector(".form-input");
     const bookId = document.querySelector(".idBook");
@@ -33,9 +35,36 @@
     });
 
     bookActionButtons();
-
     searchBook();
+
+    if(isStorageExist()) {
+      loadDataFromStorage();
+    }
   });
+
+  function isStorageExist() {
+    if(typeof Storage === undefined) {
+      alert("browser yang anda gunakan tidak mendukung web storage");
+      return false;
+    }
+  
+    return true;
+  }
+
+  function saveBook() {
+    if(isStorageExist()) {
+      localStorage.setItem(STORAGE_KEY, JSON.stringify(books));
+    }
+  }
+
+  function loadDataFromStorage() {
+    const getDataBooks = localStorage.getItem(STORAGE_KEY);
+    const items = JSON.parse(getDataBooks);
+
+    items.map(item => books.push(item));
+
+    document.dispatchEvent(new Event(RENDER_BOOK));
+  }
 
   function addBook() {
     const id = +new Date();
@@ -59,6 +88,7 @@
     isCompleted.checked = false;
 
     document.dispatchEvent(new Event(RENDER_BOOK));
+    saveBook();
   }
 
   function createBook(book) {
@@ -121,6 +151,7 @@
     isCompleted.checked = false;
 
     document.dispatchEvent(new Event(RENDER_BOOK));
+    saveBook();
   }
 
   function bookActionButtons() {
@@ -139,6 +170,7 @@
           const bookTarget = books.find(book => book.id == bookId);
           
           bookTarget.isCompleted = true;
+          saveBook();
         } 
         
         if(e.target.classList.contains("undo-book")) {
@@ -146,6 +178,7 @@
           const bookTarget = books.find(book => book.id == bookId);
           
           bookTarget.isCompleted = false;
+          saveBook();
         }
 
         if(e.target.classList.contains("remove-book")) {
@@ -153,6 +186,7 @@
           const bookTarget = books.findIndex(book => book.id == bookId);
 
           books.splice(bookTarget, 1);
+          saveBook();
         }
 
         if(e.target.classList.contains("edit-book")) {
