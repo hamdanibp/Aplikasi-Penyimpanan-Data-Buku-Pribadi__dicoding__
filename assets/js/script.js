@@ -25,6 +25,7 @@
   document.addEventListener("DOMContentLoaded", () => {
     const form = document.querySelector(".form-input");
     const bookId = document.querySelector(".idBook");
+    const btnSubmit = document.querySelector(".button-submit");
 
     form.addEventListener("submit", e => {
       e.preventDefault();
@@ -32,6 +33,8 @@
       (bookId.value.length === 0) ? addBook() : editBook(bookId.value);
 
       bookId.value = "";
+      btnSubmit.innerText = "Tambah Data";
+      btnSubmit.classList.replace("button-edit", "button-submit");
     });
 
     bookActionButtons();
@@ -192,6 +195,7 @@
         }
 
         if(e.target.classList.contains("edit-book")) {
+          const btnSubmit = document.querySelector(".button-submit");
           const bookId = e.target.dataset.bookid;
           const bookTarget = books.find(book => book.id == bookId);
 
@@ -200,6 +204,8 @@
           author.value = bookTarget.author;
           year.value = bookTarget.year;
           isCompleted.checked = bookTarget.isCompleted;
+          btnSubmit.innerText = "Edit Data";
+          btnSubmit.classList.replace("button-submit", "button-edit");
         }
 
         document.dispatchEvent(new Event(RENDER_BOOK));

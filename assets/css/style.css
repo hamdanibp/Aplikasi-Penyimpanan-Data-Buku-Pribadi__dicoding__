@@ -133,6 +133,16 @@ button > i {
   transition: .3s;
 }
 
+.form-input .button-edit {
+  margin-top: 12px;
+  background: #d38a04;
+  border: 1px solid #d38a04;
+  color: #fff;
+  font-weight: bold;
+  letter-spacing: .5px;
+  transition: .3s;
+}
+
 .form-input .button-submit:hover {
   color: #008ea1;
   background: #fff;
