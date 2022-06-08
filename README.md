@@ -1,5 +1,5 @@
-# SUBMISSION-DICODING---Front-End-Web-untuk-Pemula
-Aplikasi Penyimpanan Data Buku Pribadi - (dicoding)
+# Aplikasi Penyimpanan Data Buku Pribadi - (dicoding)
+Membuat Aplikasi penyimpanan buku pribadi
 
 ## Rating
 ![rating](/screenshot/rating.png)
