@@ -187,11 +187,17 @@
         }
 
         if(e.target.classList.contains("remove-book")) {
-          const bookId = e.target.dataset.bookid;
-          const bookTarget = books.findIndex(book => book.id == bookId);
+          const confirmRemove = confirm("Yakin ingin menghapus..?");
 
-          books.splice(bookTarget, 1);
-          saveBook();
+          if(confirmRemove) {
+            const bookId = e.target.dataset.bookid;
+            const bookTarget = books.findIndex(book => book.id == bookId);
+  
+            books.splice(bookTarget, 1);
+            saveBook();
+          } else {
+            return;
+          }
         }
 
         if(e.target.classList.contains("edit-book")) {
